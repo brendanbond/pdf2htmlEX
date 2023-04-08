@@ -10,8 +10,8 @@ option(ENABLE_SVG "Enable SVG support, for generating SVG background images and 
 
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
-# Read/Set Cmake's PDF2HTMLEX_VERSION directly from the shell environment 
-# variable PDF2HTMLEX_VERSION 
+# Read/Set Cmake's PDF2HTMLEX_VERSION directly from the shell environment
+# variable PDF2HTMLEX_VERSION
 #
 set(PDF2HTMLEX_VERSION $ENV{PDF2HTMLEX_VERSION})
 #
@@ -24,8 +24,8 @@ add_custom_target(dist
 find_package(PkgConfig)
 
 
-# SINCE we have a very intimate relationship with a particular version of 
-# poppler... we explicitly describe the poppler include and library 
+# SINCE we have a very intimate relationship with a particular version of
+# poppler... we explicitly describe the poppler include and library
 # paths.
 #
 include_directories(
@@ -35,8 +35,8 @@ include_directories(
   ../poppler
 )
 #
-# The following order is critical as the glib functions use functions 
-# located in the main poppler library 
+# The following order is critical as the glib functions use functions
+# located in the main poppler library
 #
 set(POPPLER_LIBRARIES ${POPPLER_LIBRARIES}
   ${CMAKE_SOURCE_DIR}/../poppler/build/glib/libpoppler-glib.a
@@ -66,8 +66,8 @@ if(ENABLE_SVG)
 #    set(PDF2HTMLEX_LIBS ${PDF2HTMLEX_LIBS} ${FREETYPE_LIBRARIES})
 endif()
 
-# SINCE we have a very intimate relationship with a particular version of 
-# fontforge... we explicitly describe the fontforge include and library 
+# SINCE we have a very intimate relationship with a particular version of
+# fontforge... we explicitly describe the fontforge include and library
 # paths.
 #
 include_directories(
@@ -75,6 +75,8 @@ include_directories(
   ../fontforge
   ../fontforge/build/inc
   ../fontforge/inc
+  /usr/include/glib-2.0
+  /usr/lib/glib-2.0/include
 )
 #
 include_directories(${FONTFORGE_INCLUDE_DIRS})
@@ -85,7 +87,7 @@ set(FONTFORGE_LIBRARIES ${FONTFORGE_LIBRARIES}
 
 # If we are using Alpine Linux then we need to add -lintl
 #
-if (EXISTS /usr/lib/libintl.so ) 
+if (EXISTS /usr/lib/libintl.so )
   set(LIB_INTL_LIBRARIES -lintl )
 else ()
   set(LIB_INTL_LIBRARIES "" )
