@@ -55,7 +55,7 @@ cmake                                       \
 # done
 
 # Apply patch manually
-mv ../patches/poppler-private_patched.h ../poppler/glib/poppler-private.h
+mv /src/patches/poppler-private_patched.h /src/poppler/glib/poppler-private.h
 
 make $MAKE_PARALLEL
 
