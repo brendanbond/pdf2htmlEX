@@ -15,10 +15,6 @@
 
 namespace pdf2htmlEX {
 
-#ifndef nullptr
-#define nullptr (NULL)
-#endif
-
 static const double EPS = 1e-6;
 static const double DEFAULT_DPI = 72.0;
 extern const double ID_MATRIX[6];
@@ -28,7 +24,7 @@ extern const std::map<std::string, std::string> GB_ENCODED_FONT_NAME_MAP;
 // map to embed files into html
 struct EmbedStringEntry
 {
-    int Param::*embed_flag; 
+    int Param::*embed_flag;
     // used when *embed_flag == true
     std::string prefix_embed;
     std::string suffix_embed;
