@@ -2,6 +2,9 @@
 
 # This shell script builds the latest poppler
 
+# source buildScripts/reSourceVersionEnvs
+. buildScripts/reSourceVersionEnvs
+
 echo ""
 echo "-------------------------------------------------------------------"
 echo "BUILDING Poppler (using CMake)"
@@ -44,6 +47,13 @@ cmake                                       \
   -DWITH_Cairo=ON                           \
   ..
 
+# Apply any patches required for fontforge raw sources before we make
+for APATCHFILE in $(ls ../patches/poppler-$POPPLER_VERSION-*)
+do
+ echo "patching fontforge using [$APATCHFILE]"
+ patch -p0 < $APATCHFILE
+done
+
 make $MAKE_PARALLEL
 
 
@@ -64,23 +74,23 @@ make $MAKE_PARALLEL
 #
 # ENABLE_LIBOPENJPEG="none"
 #
-# "Use libopenjpeg for JPX streams. Possible values: openjpeg2, 
-# unmaintained, none. 'unmaintained' gives you the internal unmaintained 
-# decoder. Use at your own risk. 'none' compiles no JPX decoder at all. 
+# "Use libopenjpeg for JPX streams. Possible values: openjpeg2,
+# unmaintained, none. 'unmaintained' gives you the internal unmaintained
+# decoder. Use at your own risk. 'none' compiles no JPX decoder at all.
 # Default: openjpeg2"
 #
 # ENABLE_CMS="lcms2"
 #
-# "Use color management system. Possible values: lcms2, none. 'none' 
-# disables color management system." 
-# 
+# "Use color management system. Possible values: lcms2, none. 'none'
+# disables color management system."
+#
 # ENABLE_DCTDECODER="libjpeg"
 #
-# "Use libjpeg for DCT streams. Possible values: libjpeg, unmaintained, 
-# none. will use libjpeg if available or fail if not. 'unmaintained' gives 
-# you the internal unmaintained decoder. Use at your own risk. 'none' 
-# compiles no DCT decoder at all. Default: libjpeg" 
-# 
+# "Use libjpeg for DCT streams. Possible values: libjpeg, unmaintained,
+# none. will use libjpeg if available or fail if not. 'unmaintained' gives
+# you the internal unmaintained decoder. Use at your own risk. 'none'
+# compiles no DCT decoder at all. Default: libjpeg"
+#
 # ENABLE_LIBCURL=OFF                  "Build libcurl based HTTP support."
 # ENABLE_ZLIB=ON                      "Build with zlib."
 # ENABLE_ZLIB_UNCOMPRESS=OFF          "Use zlib to uncompress flate streams (not totally safe)."
@@ -99,5 +109,5 @@ make $MAKE_PARALLEL
 #   GObjectIntrospection is not needed by pdf2htmlEX?
 #   Iconv is only used if ENABLE_CPP
 #
-# They can be explicitly DISABLED using ENABLE_XXXX:BOOL=OFF where XXXX is 
-# the package name 
+# They can be explicitly DISABLED using ENABLE_XXXX:BOOL=OFF where XXXX is
+# the package name
