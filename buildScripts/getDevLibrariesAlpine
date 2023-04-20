@@ -18,6 +18,7 @@ sudo apk update
 sudo apk add        \
   libseccomp        \
   runc              \
+  qemu-modules      \
   gettext           \
   gnu-libiconv-dev  \
   cairo-dev         \
