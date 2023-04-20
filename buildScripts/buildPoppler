@@ -48,7 +48,7 @@ cmake                                       \
   ..
 
 # Apply any patches required for fontforge raw sources before we make
-for APATCHFILE in $(ls ../patches/poppler-$POPPLER_VERSION-*)
+for APATCHFILE in $(ls ./patches/poppler-$POPPLER_VERSION-*)
 do
  echo "patching fontforge using [$APATCHFILE]"
  patch -p0 < $APATCHFILE
