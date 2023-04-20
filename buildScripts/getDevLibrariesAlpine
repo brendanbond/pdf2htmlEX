@@ -17,6 +17,7 @@ set -ev
 sudo apk update
 sudo apk add        \
   libseccomp        \
+  runc              \
   gettext           \
   gnu-libiconv-dev  \
   cairo-dev         \
