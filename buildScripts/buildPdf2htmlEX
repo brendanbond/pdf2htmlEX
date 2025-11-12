@@ -19,5 +19,10 @@ cd pdf2htmlEX
 rm -rf build
 mkdir build
 cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$PDF2HTMLEX_PREFIX ..
+GLIB_CFLAGS=$(pkg-config --cflags glib-2.0)
+cmake -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_INSTALL_PREFIX=$PDF2HTMLEX_PREFIX \
+      -DCMAKE_C_FLAGS="$GLIB_CFLAGS" \
+      -DCMAKE_CXX_FLAGS="$GLIB_CFLAGS" \
+      ..
 make $MAKE_PARALLEL

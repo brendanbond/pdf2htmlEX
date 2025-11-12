@@ -22,7 +22,9 @@ cd build
 cmake        		                        \
   -DCMAKE_BUILD_TYPE=Release                \
   -DCMAKE_INSTALL_PREFIX=$PDF2HTMLEX_PREFIX \
+  -DGETTEXT_MSGFMT_EXECUTABLE=/bin/true     \
   -DBUILD_SHARED_LIBS:BOOL=OFF              \
+  -DENABLE_NLS=OFF                          \
   -DENABLE_GUI:BOOL=OFF                     \
   -DENABLE_X11:BOOL=OFF                     \
   -DENABLE_NATIVE_SCRIPTING:BOOL=ON         \

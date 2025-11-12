@@ -30,6 +30,5 @@ sudo apt-get $UNATTENDED install \
   dpkg                           \
   dpkg-dev                       \
   gettext                        \
-  openjdk-17-jre-headless         \
   jq
 
